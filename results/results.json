@@ -1,0 +1,461 @@
+{
+  "reference": {
+    "y40": [
+      0.7158270687194045,
+      9.185534764557785e-06,
+      0.28416374574582975
+    ],
+    "y40_tight": [
+      0.715827068719403,
+      9.185534764557739e-06,
+      0.2841637457458292
+    ],
+    "absdiff_y40": [
+      1.4432899320127035e-15,
+      4.573977915173222e-20,
+      5.551115123125783e-16
+    ],
+    "agreed_digits": [
+      15,
+      20,
+      15
+    ],
+    "max_invariant_defect": 2.886579864025407e-15,
+    "min_component": 0.0,
+    "figure": "fig1_reference.png"
+  },
+  "convergence": {
+    "scalar": {
+      "euler": {
+        "h": [
+          0.0078125,
+          0.00390625,
+          0.001953125,
+          0.0009765625,
+          0.00048828125,
+          0.000244140625
+        ],
+        "err": [
+          0.0010586835864529742,
+          0.0005289976245998751,
+          0.0002644127688671283,
+          0.00013218487349611618,
+          6.60870590080409e-05,
+          3.304218506874901e-05
+        ],
+        "observed_order": 1.0
+      },
+      "rk4": {
+        "h": [
+          0.0078125,
+          0.00390625,
+          0.001953125,
+          0.0009765625,
+          0.00048828125,
+          0.000244140625
+        ],
+        "err": [
+          8.457595734867596e-12,
+          5.26856336335868e-13,
+          3.2807090377673376e-14,
+          1.9984014443252818e-15,
+          1.3877787807814457e-16,
+          2.7755575615628914e-16
+        ],
+        "observed_order": 3.26
+      },
+      "implicit": {
+        "h": [
+          0.0078125,
+          0.00390625,
+          0.001953125,
+          0.0009765625,
+          0.00048828125,
+          0.000244140625
+        ],
+        "err": [
+          0.0010559302138785087,
+          0.000528309275678901,
+          0.00026424068127595124,
+          0.00013214185157520153,
+          6.607630352728489e-05,
+          3.303949619815061e-05
+        ],
+        "observed_order": 1.0
+      }
+    },
+    "robertson": {
+      "euler": {
+        "runs": [
+          {
+            "n": 1024,
+            "h": 0.00048828125,
+            "err": 1.5065615684879685e-06,
+            "stable": "True",
+            "nonneg": "True"
+          },
+          {
+            "n": 2048,
+            "h": 0.000244140625,
+            "err": 7.532016265097974e-07,
+            "stable": "True",
+            "nonneg": "True"
+          },
+          {
+            "n": 4096,
+            "h": 0.0001220703125,
+            "err": 3.765823740654872e-07,
+            "stable": "True",
+            "nonneg": "True"
+          },
+          {
+            "n": 8192,
+            "h": 6.103515625e-05,
+            "err": 1.8828667595199855e-07,
+            "stable": "True",
+            "nonneg": "True"
+          }
+        ],
+        "observed_order": 1.0
+      },
+      "rk4": {
+        "runs": [
+          {
+            "n": 1024,
+            "h": 0.00048828125,
+            "err": 9.652167953788648e-12,
+            "stable": "True",
+            "nonneg": "True"
+          },
+          {
+            "n": 2048,
+            "h": 0.000244140625,
+            "err": 4.720182578132892e-13,
+            "stable": "True",
+            "nonneg": "True"
+          },
+          {
+            "n": 4096,
+            "h": 0.0001220703125,
+            "err": 2.5316554408405523e-14,
+            "stable": "True",
+            "nonneg": "True"
+          },
+          {
+            "n": 8192,
+            "h": 6.103515625e-05,
+            "err": 2.7755575615628914e-15,
+            "stable": "True",
+            "nonneg": "True"
+          }
+        ],
+        "observed_order": 4.35
+      },
+      "implicit": {
+        "runs": [
+          {
+            "n": 1024,
+            "h": 0.00048828125,
+            "err": 1.5059841510442484e-06,
+            "stable": "True",
+            "nonneg": "True"
+          },
+          {
+            "n": 2048,
+            "h": 0.000244140625,
+            "err": 7.53059255433064e-07,
+            "stable": "True",
+            "nonneg": "True"
+          },
+          {
+            "n": 4096,
+            "h": 0.0001220703125,
+            "err": 3.765468824176721e-07,
+            "stable": "True",
+            "nonneg": "True"
+          },
+          {
+            "n": 8192,
+            "h": 6.103515625e-05,
+            "err": 1.8827781186545045e-07,
+            "stable": "True",
+            "nonneg": "True"
+          }
+        ],
+        "observed_order": 1.0
+      }
+    },
+    "figure": "fig2_convergence.png"
+  },
+  "stiffness": {
+    "S_at_checkpoints": {
+      "0.0001": 3028.973237098071,
+      "0.01": 5423.526363829586,
+      "40.0": 158401.7717539789
+    },
+    "lam_max_at_40": 3392.7881244543937,
+    "figure": "fig7_stiffness.png"
+  },
+  "eigenvalue_bound_h": 0.0005894856756849876,
+  "explicit_failure": {
+    "sweep": [
+      {
+        "h": 0.0003,
+        "stable": "True",
+        "nonneg": "True",
+        "min_component": 0.0,
+        "max_abs": 1.0
+      },
+      {
+        "h": 0.0004,
+        "stable": "True",
+        "nonneg": "True",
+        "min_component": 0.0,
+        "max_abs": 1.0
+      },
+      {
+        "h": 0.0005,
+        "stable": "True",
+        "nonneg": "True",
+        "min_component": 0.0,
+        "max_abs": 1.0
+      },
+      {
+        "h": 0.00055,
+        "stable": "True",
+        "nonneg": "True",
+        "min_component": 0.0,
+        "max_abs": 1.0
+      },
+      {
+        "h": 0.0006,
+        "stable": "True",
+        "nonneg": false,
+        "min_component": -4.8645168613148996e-06,
+        "max_abs": 1.0
+      },
+      {
+        "h": 0.0007,
+        "stable": "False",
+        "nonneg": false,
+        "min_component": null,
+        "max_abs": null
+      },
+      {
+        "h": 0.0008,
+        "stable": "False",
+        "nonneg": false,
+        "min_component": null,
+        "max_abs": null
+      },
+      {
+        "h": 0.001,
+        "stable": "False",
+        "nonneg": false,
+        "min_component": null,
+        "max_abs": null
+      }
+    ],
+    "h_crit_empirical": 0.0006,
+    "eigenvalue_bound": 0.0005894856756849876,
+    "figure": "fig4_explicit_failure.png"
+  },
+  "stability_regions": {
+    "figure": "fig3_stability_regions.png",
+    "h_crit_used": 0.0006,
+    "note": "shaded = |R(z)|<=1; markers show h_crit * lambda_j with the frozen Jacobian at t = 1e-4, 1e-2, 40"
+  },
+  "matched_cost": {
+    "targets": [
+      0.01,
+      0.001,
+      0.0001
+    ],
+    "methods": {
+      "euler": [
+        {
+          "target": 0.01,
+          "feasible": true,
+          "h": 0.0005305371081164888,
+          "n_steps": 75395,
+          "err40": 1.8534778972179033e-06,
+          "stable": "True",
+          "nonneg": "True",
+          "wall_s": 0.504,
+          "nfev": 75395,
+          "njev": 0,
+          "newton_iter": 0,
+          "stability_pinned": false,
+          "h_over_h_stab": 0.9
+        },
+        {
+          "target": 0.001,
+          "feasible": true,
+          "h": 0.0005305371081164888,
+          "n_steps": 75395,
+          "err40": 1.8534778972179033e-06,
+          "stable": "True",
+          "nonneg": "True",
+          "wall_s": 0.512,
+          "nfev": 75395,
+          "njev": 0,
+          "newton_iter": 0,
+          "stability_pinned": false,
+          "h_over_h_stab": 0.9
+        },
+        {
+          "target": 0.0001,
+          "feasible": true,
+          "h": 0.0005305371081164888,
+          "n_steps": 75395,
+          "err40": 1.8534778972179033e-06,
+          "stable": "True",
+          "nonneg": "True",
+          "wall_s": 0.472,
+          "nfev": 75395,
+          "njev": 0,
+          "newton_iter": 0,
+          "stability_pinned": false,
+          "h_over_h_stab": 0.9
+        }
+      ],
+      "rk4": [
+        {
+          "target": 0.01,
+          "feasible": true,
+          "h": 0.000634765625,
+          "n_steps": 63015,
+          "err40": 2.5781599077845385e-12,
+          "stable": "True",
+          "nonneg": "True",
+          "wall_s": 2.109,
+          "nfev": 252060,
+          "njev": 0,
+          "newton_iter": 0,
+          "stability_pinned": false,
+          "h_over_h_stab": 0.769
+        },
+        {
+          "target": 0.001,
+          "feasible": true,
+          "h": 0.000634765625,
+          "n_steps": 63015,
+          "err40": 2.5781599077845385e-12,
+          "stable": "True",
+          "nonneg": "True",
+          "wall_s": 2.504,
+          "nfev": 252060,
+          "njev": 0,
+          "newton_iter": 0,
+          "stability_pinned": false,
+          "h_over_h_stab": 0.769
+        },
+        {
+          "target": 0.0001,
+          "feasible": true,
+          "h": 0.000634765625,
+          "n_steps": 63015,
+          "err40": 2.5781599077845385e-12,
+          "stable": "True",
+          "nonneg": "True",
+          "wall_s": 2.066,
+          "nfev": 252060,
+          "njev": 0,
+          "newton_iter": 0,
+          "stability_pinned": false,
+          "h_over_h_stab": 0.769
+        }
+      ],
+      "implicit": [
+        {
+          "target": 0.01,
+          "feasible": true,
+          "h": 2.0,
+          "n_steps": 20,
+          "err40": 0.0065268124568022,
+          "stable": "True",
+          "nonneg": "True",
+          "wall_s": 0.005,
+          "nfev": 93,
+          "njev": 93,
+          "newton_iter": 93,
+          "stability_pinned": false,
+          "h_over_h_stab": null
+        },
+        {
+          "target": 0.001,
+          "feasible": true,
+          "h": 0.29713669244111957,
+          "n_steps": 135,
+          "err40": 0.0010227745631712915,
+          "stable": "True",
+          "nonneg": "True",
+          "wall_s": 0.025,
+          "nfev": 421,
+          "njev": 421,
+          "newton_iter": 421,
+          "stability_pinned": false,
+          "h_over_h_stab": null
+        },
+        {
+          "target": 0.0001,
+          "feasible": true,
+          "h": 0.028699686348346024,
+          "n_steps": 1394,
+          "err40": 0.00010012191395192271,
+          "stable": "True",
+          "nonneg": "True",
+          "wall_s": 0.221,
+          "nfev": 3505,
+          "njev": 3505,
+          "newton_iter": 3505,
+          "stability_pinned": false,
+          "h_over_h_stab": null
+        }
+      ]
+    },
+    "lam_max": 3392.7881244543937,
+    "h_stab_bounds": {
+      "euler": 0.0005894856756849876,
+      "rk4": 0.0008252799459589825,
+      "implicit": null
+    },
+    "figure": "fig5_matched_cost.png"
+  },
+  "adaptive": {
+    "runs": [
+      {
+        "tol": 0.0001,
+        "err40": 1.208381925188462e-06,
+        "wall_s": 3.31,
+        "accepted": 20604,
+        "rejected": 8766,
+        "nfev": 323070,
+        "h_min": 5e-06,
+        "h_max": 0.002457136831028465
+      },
+      {
+        "tol": 1e-05,
+        "err40": 6.058963502586501e-07,
+        "wall_s": 4.494,
+        "accepted": 20636,
+        "rejected": 8856,
+        "nfev": 324412,
+        "h_min": 5e-06,
+        "h_max": 0.0026370566437703825
+      },
+      {
+        "tol": 1e-06,
+        "err40": 1.217072385928386e-06,
+        "wall_s": 4.378,
+        "accepted": 20758,
+        "rejected": 9126,
+        "nfev": 328724,
+        "h_min": 5e-06,
+        "h_max": 0.0023875868311018676
+      }
+    ],
+    "figure": "fig6_adaptive.png",
+    "note": "error plateaus for small tol: once h is pinned at the RK4 stability limit, a tighter tolerance cannot reduce the global error -- adaptivity buys accuracy, not stability"
+  }
+}
