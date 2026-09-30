@@ -6,6 +6,7 @@
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
 \usepackage{xcolor}
+\usepackage{enumitem}
 
 \graphicspath{{figures/}{../figures/}}
 
@@ -15,8 +16,11 @@
 \newcommand{\ee}{\mathbf{e}}
 
 \title{\textbf{Stiffness in the Robertson Chemical Kinetics System:\\
-What Explicit Methods Pay, What Implicit Methods Buy}}
-\author{Zihan Xu \and Beixue Liang \and Yumo Li\\[2pt]
+What Explicit Methods Pay, What Implicit Methods Buy}\\[2mm]
+\large Project 1 (ODE IVP) --- Group O}
+\author{Zihan Xu (2360751) --- Project Manager, Visualisation \& Report \and
+Beixue Liang (2359957) --- Mathematical Theory, Testing \& Validation \and
+Yumo Li (2253567) --- Algorithm Implementation\\[2pt]
 \small Numerical Analysis of ODEs and PDEs, Project 1 (Weeks 1--4)}
 \date{\today}
 
@@ -512,45 +516,101 @@ rescaling the rate constants.
 
 %=====================================================================
 \appendix
-\section{Individual Contribution Statement (ICS)}\label{app:ics}
+\section{Individual Contribution Statements (ICS)}\label{app:ics}
 %=====================================================================
-Team of three; roles merged from the five role cards.  Contribution
-percentages are supported by the git history of this repository
-(commit authors, review threads and the commit structure described below).
+Team of three; roles merged from the five role cards.  All three members
+contributed equally (33.3\,\% each); the claims below are traceable to the
+git history of this repository (commit authors and commit messages).  One
+statement per member, in each member's own words, following the course ICS
+format.
 
-\begin{center}
-\begin{tabular}{p{2.6cm}p{5.2cm}p{5.2cm}c}
-\toprule
-Member & Roles & Main contributions & Share\\
-\midrule
-Zihan Xu (PM + Visualization \& Report) &
-repo and folder structure, weekly plan and milestones, Gantt; report and
-slide typesetting; figure design and captions &
-\texttt{report/}, \texttt{slides/}, figure polish, final assembly \& submission &
-33.3\,\%\\
-\addlinespace
-Beixue Liang (Mathematical Theory + Testing \& Validation) &
-model and Jacobian derivation; stability-region derivations; stiffness-ratio
-definition; oracle construction and tolerance-tightening protocol; unit checks
-against known cases &
-\texttt{code/problems.py}, \texttt{code/stability.py}, oracle validation,
-numbers cross-checks &
-33.3\,\%\\
-\addlinespace
-Yumo Li (Algorithm Implementation) &
-Euler/RK4/implicit-Euler implementations; Newton iteration; adaptive
-step-doubling controller and its robustness guards; experiment scripts and
-\texttt{run\_all.py} &
-\texttt{code/solvers.py}, \texttt{code/experiments.py}, \texttt{code/run\_all.py} &
-33.3\,\%\\
-\bottomrule
-\end{tabular}
-\end{center}
+\subsection*{Individual Contribution Statement --- Zihan Xu (2360751)}
+\textbf{Role this project:} Project Manager; visualisation \& report.
+
+\textbf{The specific things I did this project:}
+\begin{enumerate}[leftmargin=2em,itemsep=1pt]
+\item Set up the repository structure and the weekly milestone plan; merged
+  the five role cards into the three-role assignment and kept the weekly
+  issue-ticket log.
+\item Typeset the report and the slide deck in \LaTeX{} (compiled with
+  \texttt{tectonic}); designed the seven report figures and wrote their
+  interpretive captions; assembled the final submission package.
+\item Ran the full pipeline (\texttt{python code/run\_all.py}) on my machine
+  and cross-checked every number quoted in the text against
+  \texttt{results/results.json} before submission.
+\end{enumerate}
+\textbf{The hardest conceptual obstacle I encountered:} explaining in plain
+language \emph{why} an adaptive controller cannot buy stability --- the
+distinction between an accuracy criterion and a stability criterion took me
+several drafts of Figure~6's caption to get right.
+\textbf{One piece of AI-generated output my team used, and what I changed:}
+Log item~3 (matched-cost experiment): the AI-proposed bisection was replaced
+by an order-$p$ prediction capped at the empirical stability limit; I
+re-derived the final cost table directly from \texttt{results.json} myself.
+\textbf{One thing I still do not fully understand:} the round-off floor that
+ends the convergence table at $h\approx10^{-6}$ --- I can state it, but I
+cannot yet derive it from first principles.
 
 \medskip
-\noindent\emph{Every member ran \texttt{python code/run\_all.py}, can explain
-every method in the viva, and reviewed the others' pull requests; the git
-history shows at least one reviewed commit per member per week.}
+\subsection*{Individual Contribution Statement --- Beixue Liang (2359957)}
+\textbf{Role this project:} Mathematical theory; testing \& validation.
+
+\textbf{The specific things I did this project:}
+\begin{enumerate}[leftmargin=2em,itemsep=1pt]
+\item Derived the Jacobian of the Robertson system and its frozen-eigenvalue
+  path; derived the absolute stability regions $R(z)$ of the three methods
+  (Section~\ref{sec:stability}) and the stiffness-ratio definition with the
+  values $3.0\times10^{3}$, $5.4\times10^{3}$, $1.6\times10^{5}$.
+\item Built the Radau reference oracle (\texttt{code/problems.py}) and the
+  tolerance-tightening validation protocol (a $\sim$45$\times$ tighter repeat
+  agrees to 15 digits); reproduced the Problem Pack orientation values.
+\item Wrote the scalar-exact-solution unit checks and the
+  conservation/positivity diagnostics used in
+  Section~\ref{sec:experiments}; predicted the explicit-Euler stability
+  threshold $\HBoundEuler$ later confirmed within 2\,\% by experiment.
+\end{enumerate}
+\textbf{The hardest conceptual obstacle I encountered:} trusting a numerical
+oracle to 15 digits --- resolving why two independently tightened Radau runs
+agree digit-for-digit (and when they legally may not) took the longest.
+\textbf{One piece of AI-generated output my team used, and what I changed:}
+Log item~2: the AI controller used an absolute inf-norm error test; I
+identified the $y_2<0$ corruption mechanism ($y_2'\sim-3\times10^{7}y_2^{2}$
+runaway) and specified the componentwise test actually implemented.
+\textbf{One thing I still do not fully understand:} the exact rounding
+mechanism by which positivity is lost slightly \emph{before} the linear
+stability threshold is crossed.
+
+\medskip
+\subsection*{Individual Contribution Statement --- Yumo Li (2253567)}
+\textbf{Role this project:} Algorithm implementation.
+
+\textbf{The specific things I did this project:}
+\begin{enumerate}[leftmargin=2em,itemsep=1pt]
+\item Implemented \texttt{code/solvers.py} from scratch: explicit Euler,
+  classical RK4, implicit Euler with Newton's iteration (analytic Jacobian,
+  relative-scale stopping rule, divergence guard), and the adaptive
+  step-doubling RK4 controller (componentwise tolerance, positivity veto,
+  stability-ceiling memory).
+\item Wrote the experiment scripts (\texttt{code/experiments.py}) and the
+  end-to-end pipeline \texttt{code/run\_all.py} that regenerates every
+  figure and table in this report in one command.
+\item Diagnosed and fixed two controller defects: the silent $y_2<0$
+  corruption (fixed by the componentwise test) and a floating-point
+  end-of-interval stall (fixed by endpoint snapping).
+\end{enumerate}
+\textbf{The hardest conceptual obstacle I encountered:} the controller
+oscillation at the stability boundary --- growth-by-5 followed by
+overflow-reject-by-$\frac14$ made the integration crawl; designing the
+stability-ceiling memory that caps growth below the last rejected step was
+the subtlest code I wrote.
+\textbf{One piece of AI-generated output my team used, and what I changed:}
+Log item~1: I kept the AI's Newton structure but rewrote the stopping rule
+(relative scale), the divergence handling, and vectorised the Jacobian
+assembly; correctness was verified against the scalar exact solution.
+\textbf{One thing I still do not fully understand:} why the step-doubling
+error estimate plateaus the global error at $\sim10^{-6}$ even as the
+tolerance tightens --- I observed it and can explain it qualitatively via
+the RK4 stability limit, but not quantitatively.
 
 %=====================================================================
 \section{AI Transparency Log}\label{app:ailog}
@@ -559,51 +619,111 @@ AI tools were used as coding assistance under the course policy
 (``AI is encouraged, transparent log required'').  Plan-first discipline was
 followed: the team wrote the plan (methods, algorithms, expected orders,
 sanity checks) before asking AI to implement individual steps, and every
-AI-produced artefact was verified against that plan.
+AI-produced artefact was verified against that plan.  Raw transcripts are
+archived by the team and available on request.
 
+\subsection*{A1. AI tools used}
 \begin{center}
-\begin{tabular}{p{1.6cm}p{3.4cm}p{5.4cm}p{4.6cm}}
+\begin{tabular}{@{}p{4.2cm}p{3.4cm}p{6.4cm}@{}}
 \toprule
-Where & AI use & What we changed / verified & Verification\\
+Tool & Version / date & Primary use \\
 \midrule
-Solver library &
-scaffold for Euler/RK4/implicit Euler; Newton loop &
-rewrote the Newton stopping rule (relative scale, max-iteration guard);
-added divergence handling; vectorised Jacobian assembly &
-order verification vs.\ scalar exact solution; Newton iteration counts
-sanity-checked ($\approx2$ per step)\\
+WorkBuddy AI assistant (GLM) & Sep 2026 &
+solver and experiment scaffolding, \LaTeX{} scaffolding, language polish \\
+Routine autocomplete & Sep 2026 & summarised once: spelling, formatting \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{A2. Significant AI-assisted claim audits}
+\begin{center}
+\begin{tabular}{@{}p{0.4cm}p{7.2cm}p{6.4cm}@{}}
+\toprule
+\# & Prompt / claim / assumptions & Risk and possible falsifier \\
+\midrule
+1 &
+Prompt: implement Euler, RK4, implicit Euler with Newton (scaffold).
+Claim: the Newton loop solves $w-y_n-hf(t_{n+1},w)=0$.
+Assumption: the AI's stage equation and stopping rule are correct. &
+Sign error in $J_F=I-hJ_f$ or an absolute stopping rule that never
+converges on stiff steps.  Falsifier: convergence-order test against a
+scalar exact solution; Newton iteration counts per step. \\
 \addlinespace
-Adaptive controller &
-step-doubling skeleton &
-replaced the absolute inf-norm error test with the componentwise test
-\eqref{eq:tol} after diagnosing a silent $y_2<0$ corruption; added the
-stability-ceiling memory, explosion guard and positivity veto;
-fixed a floating-point end-of-interval stall &
-full-interval runs converge; error vs.\ tolerance measured
-(Table~\ref{tab:adaptive}); step profile matches the $2.8/|\lambda|_{\max}$
-envelope\\
+2 &
+Prompt: adaptive step-doubling RK4 controller (skeleton).
+Claim: the error test keeps the solution within tolerance.
+Assumption: an absolute inf-norm test is adequate for all components. &
+Silent corruption: $y_2=O(10^{-5})$ may overshoot slightly negative and
+run away quadratically ($y_2'\sim-3\times10^{7}y_2^{2}$) before the
+inf-norm test notices.  Falsifier: positivity check plus comparison with
+the Radau oracle over the full interval. \\
 \addlinespace
-Experiments &
-plot scaffolding &
-redesigned the matched-cost search (order-$p$ prediction capped at the
-empirical stability limit) after the first bisection produced
-stability-pinned runs at absurd cost; declared the cost measure before
-quoting numbers &
-all costs re-measured from \texttt{results/results.json}; consistency of
-tables with figures\\
+3 &
+Prompt: find, for each method, the largest $h$ meeting a matched error
+target (bisection proposed).
+Claim: the resulting costs are comparable at matched accuracy.
+Assumption: bisection explores $h$ freely. &
+Explicit methods are stability-pinned, so bisection collapses to the
+stability limit and rejects unstable runs as ``inaccurate'' ---
+overstating their cost or hiding feasibility.  Falsifier: compare the
+found $h$ against the predicted $2.8/|\lambda|_{\max}$ envelope. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{A3. Independent verification and decision}
+\begin{center}
+\begin{tabular}{@{}p{0.4cm}p{7.2cm}p{6.4cm}@{}}
+\toprule
+\# & Independent check and evidence location & Final decision / modification / limitation \\
+\midrule
+1 &
+Order verification vs.\ scalar exact solution (Section~\ref{sec:orders});
+Newton iteration counts $\approx2$ per step (printed by \texttt{run\_all.py}). &
+Kept the structure; rewrote the stopping rule (relative scale,
+max-iteration guard), added divergence handling, vectorised Jacobian
+assembly. \\
 \addlinespace
-Reference oracle &
-none (spec'd from the brief) &
---- &
-Radau tight vs.\ $\sim45\times$ tighter repeat agree to 15 digits; Problem
-Pack orientation value reproduced\\
+2 &
+Full-interval runs vs.\ oracle (\texttt{results/results.json},
+Table~\ref{tab:adaptive}); positivity diagnostics
+(Section~\ref{sec:failure}). &
+Replaced the absolute test with the componentwise test \eqref{eq:tol};
+added positivity veto, stability-ceiling memory, explosion guard, and
+endpoint snapping.  Documented limitation: adaptive global error
+plateaus at $\sim10^{-6}$ (stability, not accuracy, bound). \\
 \addlinespace
-Report \& slides &
-LaTeX scaffolding, language polish &
-all derivations re-derived by hand; every number injected from
-\texttt{numbers.tex} generated from \texttt{results.json}; claims re-read
-against figures &
-two-pass internal review; every figure regenerated by \texttt{run\_all.py}\\
+3 &
+$h$ from the search compared against the $2.8/|\lambda|_{\max}$
+envelope (Figure~\ref{fig:adaptive}); all costs re-measured from
+\texttt{results/results.json}; cost measure (right-hand-side evaluations)
+declared before quoting numbers. &
+Replaced bisection with an order-$p$ prediction capped at the empirical
+stability limit; the negative result (RK4 wins at none of the targets)
+is reported as measured. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{A4. Intellectual ownership declaration}
+\begin{center}
+\begin{tabular}{@{}p{2.6cm}p{2.2cm}p{4.6cm}p{4.6cm}@{}}
+\toprule
+Name & Signature & Team-owned artefact / contribution & Trusted dependency and interface \\
+\midrule
+Zihan Xu & \rule{1.8cm}{0.4pt} &
+report/, slides/, figures and captions; submission assembly &
+matplotlib figure API; \texttt{tectonic} \LaTeX{} toolchain \\
+\addlinespace
+Beixue Liang & \rule{1.8cm}{0.4pt} &
+\texttt{code/problems.py} (oracle), \texttt{code/stability.py}; all derivations &
+\texttt{scipy.integrate.Radau} (trusted oracle, self-checked at
+$\sim$45$\times$ tighter tolerance); \texttt{numpy.linalg.eigvals} \\
+\addlinespace
+Yumo Li & \rule{1.8cm}{0.4pt} &
+\texttt{code/solvers.py}, \texttt{code/experiments.py}, \texttt{code/run\_all.py} &
+\texttt{numpy.linalg.solve} (LU factorisation) --- validated against the
+scalar exact solution; Newton convergence verified independently \\
 \bottomrule
 \end{tabular}
 \end{center}

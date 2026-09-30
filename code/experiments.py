@@ -51,7 +51,7 @@ def _savefig(fig, name):
     os.makedirs(FIG_DIR, exist_ok=True)
     path = os.path.join(FIG_DIR, name)
     fig.tight_layout()
-    fig.savefig(path)
+    fig.savefig(path, dpi=200)
     plt.close(fig)
     return path
 
