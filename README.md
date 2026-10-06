@@ -12,14 +12,14 @@ stiff benchmark, used to answer one mathematical question:
 
 Three-member team (roles merged from the five role cards):
 
-| Member | Roles (merged) | Ownership |
-|--------|----------------|-----------|
-| Member A | Project Manager + Visualization & Report | repo/plan/slides/report typesetting |
-| Member B | Mathematical Theory + Testing & Validation | model, Jacobian, stability derivations, oracle, tests |
-| Member C | Algorithm Implementation | solvers, adaptive controller, experiments |
+| Member | ID | Roles (merged) | Contribution |
+|--------|----|----------------|--------------|
+| Zihan Xu | 2360751 | Project Manager + Visualization & Report | repo/plan/slides/report typesetting |
+| Beixue Liang | 2359957 | Mathematical Theory + Testing & Validation | model, Jacobian, stability derivations, oracle, tests |
+| Yumo Li | 2253567 | Algorithm Implementation | solvers, adaptive controller, experiments |
 
-> Fill in real names in `report/ics.tex` before submission — the ICS must be honest
-> and is supported by the git history.
+All members contributed 33.3% each — see Appendix A (ICS) in report/report.pdf.
+
 
 ## Repository layout
 
